@@ -39,10 +39,13 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	SDL_Rect dimensions = {0, 0, image->w, image->h};
+	int image_width = image->w;
+	int image_height = image->h;
+	SDL_Rect dimensions = {0, 0, image_width, image_height};
 	SDL_RenderCopy(renderer, texture, NULL, &dimensions);
 
 	bool keep_window_open = true;
+	bool a = false;
 	while(keep_window_open) {
     	SDL_Event e;
     	while(SDL_PollEvent(&e) > 0) {
@@ -51,12 +54,19 @@ int main(int argc, char *argv[]) {
                 	keep_window_open = false;
                 break;
 				case SDL_MOUSEBUTTONDOWN:
-					dimensions = {0, 0, 500, image->h};
-					std::cout << "MOUSE BUTTON PRESSED!!!\n";
+					if(!a) {
+						dimensions = {0, 0, 500, image_height};
+						std::cout << "MOUSE BUTTON PRESSED!!!\n";
+						SDL_UpdateWindowSurface(window);
+						a = true;
+					}
 				break;
 				case SDL_MOUSEBUTTONUP:
-					dimensions = {0, 0, image->w, image->h};
-					SDL_UpdateWindowSurface(window);
+					if(a) {
+						dimensions = {0, 0, image_width, image_height};
+						SDL_UpdateWindowSurface(window);
+						a = false;
+					}
 				break;
 			}
 			SDL_RenderCopy(renderer, texture, NULL, &dimensions);
