@@ -13,6 +13,9 @@ class Application {
         void update();
         void draw();
     private:
+        SDL_Surface *m_image;
+        SDL_Rect    *m_image_position;
+
         SDL_Window  *m_window;
         SDL_Surface *m_window_surface;
         SDL_Event    m_window_event;

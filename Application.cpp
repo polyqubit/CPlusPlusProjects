@@ -21,7 +21,7 @@ Application::Application() {
     }
 }
 
-// deconstructor(def not in java)
+// destructor(def not in java)
 Application::~Application() {
     SDL_FreeSurface(m_window_surface);
     SDL_DestroyWindow(m_window);
