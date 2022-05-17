@@ -1,7 +1,6 @@
 #include <iostream>
-#include <SDL2/SDL.h>
 #include <conio.h>
-#include <Application.hpp>
+#include "Application.cpp"
 // terminal -> command in make.txt
 // following tutorial for now lol
 const int WIDTH = 800, HEIGHT = 600;
