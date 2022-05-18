@@ -4,7 +4,7 @@
 
 // constructor
 Application::Application() {
-    m_window = SDL_CreateWindow("SDL2 Window",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 680, 480, 0);
+    m_window = SDL_CreateWindow("Shapes",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 680, 480, 0);
 
     if(!m_window) {
         std::cout << "Failed to create window\n";
