@@ -1,15 +1,7 @@
 #include "Application.hpp"
+#include "helper.cpp"
 
 // somewhat translates to implementing an interface?
-
-// loads image
-SDL_Surface *load_surface(char const *path) {
-    SDL_Surface *image_surface = IMG_Load(path);
-
-    if(!image_surface) {return 0;}
-
-    return image_surface;
-}
 
 // constructor
 Application::Application() {
@@ -27,7 +19,7 @@ Application::Application() {
         return;
     }
 
-    m_image = load_surface("resources/test.png");
+    m_image = helper::load_surface("resources/test.png");
     if(!m_image) {
         std::cout << "Failed to access image\n";
         std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
@@ -61,4 +53,5 @@ void Application::update() {
 // updates window ig
 void Application::draw() {
     SDL_UpdateWindowSurface(m_window);
+    SDL_BlitSurface(m_image, NULL, m_window_surface, NULL);
 }
