@@ -2,10 +2,18 @@
 
 // somewhat translates to implementing an interface?
 
+// loads image
+SDL_Surface *load_surface(char const *path) {
+    SDL_Surface *image_surface = IMG_Load(path);
+
+    if(!image_surface) {return 0;}
+
+    return image_surface;
+}
+
 // constructor
 Application::Application() {
     m_window = SDL_CreateWindow("Shapes",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 680, 480, 0);
-
     if(!m_window) {
         std::cout << "Failed to create window\n";
         std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
@@ -13,9 +21,15 @@ Application::Application() {
     }
 
     m_window_surface = SDL_GetWindowSurface(m_window);
-
     if(!m_window_surface) {
         std::cout << "Failed to get window's surface\n";
+        std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
+        return;
+    }
+
+    m_image = load_surface("resources/test.png");
+    if(!m_image) {
+        std::cout << "Failed to access image\n";
         std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
         return;
     }

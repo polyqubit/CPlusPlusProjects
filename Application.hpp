@@ -12,6 +12,7 @@ class Application {
 
         void update();
         void draw();
+        SDL_Surface *load_surface(char const *path);
     private:
         SDL_Surface *m_image;
         SDL_Rect    *m_image_position;
