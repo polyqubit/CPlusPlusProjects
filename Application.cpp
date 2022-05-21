@@ -1,5 +1,5 @@
+#include <iostream>
 #include "Application.hpp"
-#include "helper.cpp"
 
 // somewhat translates to implementing an interface?
 
@@ -18,20 +18,6 @@ Application::Application() {
         std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
         return;
     }
-
-    m_image = helper::load_surface("resources/test.png");
-    if(!m_image) {
-        std::cout << "Failed to access image\n";
-        std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
-        return;
-    }
-
-    m_image_position.x = 0;
-    m_image_position.y = 0;
-    m_image_position.w = 94;
-    m_image_position.h = 128;
-    m_image_x = 0;
-    m_image_y = 0;
 }
 
 // destructor(def not in java)
@@ -53,7 +39,7 @@ void Application::loop() {
                 break;
             }
         }
-        update(1.0/60.0);
+        update(0.01667); // 60 fps
         draw();
     }
 }

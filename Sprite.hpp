@@ -13,6 +13,7 @@ class Sprite {
     private:
         SDL_Surface *m_image;
         SDL_Rect     m_position;
-        int          m_x;
-        int          m_y;
+        double       m_x;
+        double       m_y;
+        bool         direction; // true = right, false = left
 };
