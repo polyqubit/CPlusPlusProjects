@@ -8,7 +8,6 @@ const int WIDTH = 800, HEIGHT = 600;
 int main(int argc, char *argv[]) {
 	Application app;
 
-    app.update();
-    app.draw();
+    app.loop();
 	return EXIT_SUCCESS;
 }

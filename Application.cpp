@@ -25,6 +25,13 @@ Application::Application() {
         std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
         return;
     }
+
+    m_image_position.x = 0;
+    m_image_position.y = 0;
+    m_image_position.w = 94;
+    m_image_position.h = 128;
+    m_image_x = 0;
+    m_image_y = 0;
 }
 
 // destructor(def not in java)
@@ -36,7 +43,7 @@ Application::~Application() {
 // implementation of methods
 
 // if there is an event to be handled, do something
-void Application::update() {
+void Application::loop() {
     bool keep_window_open = true;
     while(keep_window_open) {
         while(SDL_PollEvent(&m_window_event) > 0) {
@@ -46,12 +53,18 @@ void Application::update() {
                 break;
             }
         }
+        update(1.0/60.0);
         draw();
     }
 }
 
+void Application::update(double delta_time) {
+    m_sprite.update(delta_time);
+}
+
 // updates window ig
 void Application::draw() {
+    SDL_FillRect(m_window_surface, nullptr, SDL_MapRGB(m_window_surface->format, 0, 0, 0));
+    m_sprite.draw(m_window_surface);
     SDL_UpdateWindowSurface(m_window);
-    SDL_BlitSurface(m_image, NULL, m_window_surface, NULL);
 }
