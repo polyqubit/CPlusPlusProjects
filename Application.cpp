@@ -5,7 +5,7 @@
 
 // constructor
 Application::Application() {
-    m_window = SDL_CreateWindow("Shapes",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 680, 480, 0);
+    m_window = SDL_CreateWindow("Shapes",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 800, 0);
     if(!m_window) {
         std::cout << "Failed to create window\n";
         std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
@@ -33,6 +33,7 @@ void Application::loop() {
     bool keep_window_open = true;
     while(keep_window_open) {
         while(SDL_PollEvent(&m_window_event) > 0) {
+            m_sprite.handle_events(m_window_event);
             switch(m_window_event.type) {
                 case SDL_QUIT:
                     keep_window_open = false;
