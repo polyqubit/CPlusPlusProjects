@@ -26,7 +26,8 @@
         "string_view": "cpp",
         "system_error": "cpp",
         "type_traits": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "sdl2_rotozoom.c": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

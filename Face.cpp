@@ -1,14 +1,14 @@
 #include <iostream>
-#include "Sprite.hpp"
+#include "Face.hpp"
 #include "helper.cpp"
 
-Sprite::Sprite() {
-    m_image = helper::load_surface("resources/test.png");
-    if(!m_image) {
-        std::cout << "Failed to access image\n";
-        std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
-        return;
-    }
+Face::Face() {
+    // m_image = helper::load_surface("resources/test.png");
+    // if(!m_image) {
+    //     std::cout << "Failed to access image\n";
+    //     std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
+    //     return;
+    // }
 
     m_position.x = 70.0;
     m_position.y = 70.0;
@@ -19,7 +19,7 @@ Sprite::Sprite() {
     m_y = m_position.y;
 }
 
-void Sprite::update(double delta_time) {
+void Face::update(double delta_time) {
     switch(m_direction) {
         case Direction::NONE: {
             m_x += 0.0;
@@ -42,23 +42,29 @@ void Sprite::update(double delta_time) {
             m_x = m_x + (10.0 * delta_time);
             break;
         }
-        case Direction::EXPAND: {
-            // m_x = m_x - (m_position.w);
-            // m_y = m_y - (m_position.h);
-            m_image = rotozoomSurface(m_image, 0, 1.01, 0);
-            break;
-        }
+        // case Direction::EXPAND: {
+        //     // m_x = m_x - (m_position.w);
+        //     // m_y = m_y - (m_position.h);
+        //     m_image = rotozoomSurface(m_image, 0, 1.01, 0);
+        //     break;
+        // }
     }
 
     m_position.x = m_x;
     m_position.y = m_y;
 }
 
-void Sprite::draw(SDL_Surface *window_surface) {
-    SDL_BlitSurface(m_image, nullptr, window_surface, &m_position);
+void Face::draw(SDL_Renderer *renderer, const Sint16 *vx, const Sint16 *vy) {
+    // make a struct containing coords
+    if(filledPolygonRGBA(renderer,vx,vy,3,0,100,0,255)!=0) {
+        std::cout << "error";
+        return;
+    }
+    // std::cout << "didn't break";
+    // SDL_BlitSurface(m_image, nullptr, window_surface, &m_position);
 }
 
-void Sprite::handle_events(SDL_Event const &event) {
+void Face::handle_events(SDL_Event const &event) {
     switch(event.type) {
         case SDL_KEYDOWN: {
             Uint8 const *keys = SDL_GetKeyboardState(nullptr);
@@ -79,10 +85,10 @@ void Sprite::handle_events(SDL_Event const &event) {
                 m_direction = Direction::RIGHT;
                 std::cout << "moving RIGHT\n";
             }
-            else if(keys[SDL_SCANCODE_E] == 1) {
-                m_direction = Direction::EXPAND;
-                std::cout << "EXPANDING\n";
-            }
+            // else if(keys[SDL_SCANCODE_E] == 1) {
+            //     m_direction = Direction::EXPAND;
+            //     std::cout << "EXPANDING\n";
+            // }
             break;
         }
         case SDL_KEYUP: {

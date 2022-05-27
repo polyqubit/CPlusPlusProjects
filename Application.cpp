@@ -18,6 +18,12 @@ Application::Application() {
         std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
         return;
     }
+
+    m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if(m_renderer == NULL) {
+		std::cout << "error getting renderer" << SDL_GetError() << std::endl;
+		return;
+	}
 }
 
 // destructor(def not in java)
@@ -33,7 +39,7 @@ void Application::loop() {
     bool keep_window_open = true;
     while(keep_window_open) {
         while(SDL_PollEvent(&m_window_event) > 0) {
-            m_sprite.handle_events(m_window_event);
+            m_face.handle_events(m_window_event);
             switch(m_window_event.type) {
                 case SDL_QUIT:
                     keep_window_open = false;
@@ -46,12 +52,13 @@ void Application::loop() {
 }
 
 void Application::update(double delta_time) {
-    m_sprite.update(delta_time);
+    m_face.update(delta_time);
 }
 
 // updates window ig
 void Application::draw() {
     SDL_FillRect(m_window_surface, nullptr, SDL_MapRGB(m_window_surface->format, 0, 0, 0));
-    m_sprite.draw(m_window_surface);
+    m_face.draw(m_renderer,vx,vy);
+    SDL_RenderPresent(m_renderer);
     SDL_UpdateWindowSurface(m_window);
 }

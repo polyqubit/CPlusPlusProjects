@@ -3,14 +3,15 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL2_rotozoom.c>
+#include <SDL2/SDL2_gfxPrimitives.c>
 
 enum class Direction {
     NONE,
     UP,
     DOWN,
     LEFT,
-    RIGHT,
-    EXPAND
+    RIGHT
+    // EXPAND
 };
 
 class Face {
@@ -19,7 +20,7 @@ class Face {
         ~Face() = default;
     
         void update(double delta_time);
-        void draw(SDL_Surface *window_surface);
+        void draw(SDL_Renderer *renderer, const Sint16 *vx, const Sint16 *vy);
         void handle_events(SDL_Event const &event);
     private:
         SDL_Surface *m_image;
@@ -27,5 +28,4 @@ class Face {
         Direction    m_direction;
         double       m_x;
         double       m_y;
-        bool         direction; // true = right, false = left
 };

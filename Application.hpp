@@ -15,9 +15,14 @@ class Application {
         void update(double delta_time);
         SDL_Surface *load_surface(char const *path);
     private:
-        Face      m_sprite;
+        Face      m_face;
 
-        SDL_Window  *m_window;
-        SDL_Surface *m_window_surface;
-        SDL_Event    m_window_event;
+        SDL_Window   *m_window;
+        SDL_Surface  *m_window_surface;
+        SDL_Renderer *m_renderer;
+        SDL_Event     m_window_event;
+
+        
+        Sint16 vx[3] = {50,100,50};
+        Sint16 vy[3] = {50,100,10};
 };
