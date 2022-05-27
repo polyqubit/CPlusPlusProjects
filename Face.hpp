@@ -31,6 +31,9 @@ class Face {
         
         Sint16 vx[3];  // = {50,100,50};
         Sint16 vy[3];  // = {50,100,10};
+        double dvx[3];
+        double dvy[3];
+
         double       m_x;
         double       m_y;
 };
