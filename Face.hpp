@@ -13,10 +13,10 @@ enum class Direction {
     EXPAND
 };
 
-class Sprite {
+class Face {
     public:
-        Sprite();
-        ~Sprite() = default;
+        Face();
+        ~Face() = default;
     
         void update(double delta_time);
         void draw(SDL_Surface *window_surface);

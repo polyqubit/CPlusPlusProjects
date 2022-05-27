@@ -2,7 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "Sprite.cpp"
+#include "Face.cpp"
 
 // hpp is an interface?
 class Application {
@@ -15,7 +15,7 @@ class Application {
         void update(double delta_time);
         SDL_Surface *load_surface(char const *path);
     private:
-        Sprite      m_sprite;
+        Face      m_sprite;
 
         SDL_Window  *m_window;
         SDL_Surface *m_window_surface;
