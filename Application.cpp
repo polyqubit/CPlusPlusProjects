@@ -57,8 +57,8 @@ void Application::update(double delta_time) {
 
 // updates window ig
 void Application::draw() {
-    SDL_FillRect(m_window_surface, nullptr, SDL_MapRGB(m_window_surface->format, 0, 0, 0));
-    m_face.draw(m_renderer,vx,vy);
+    // SDL_FillRect(m_window_surface, nullptr, SDL_MapRGB(m_window_surface->format, 0, 0, 0));
+    m_face.draw(m_renderer);
     SDL_RenderPresent(m_renderer);
     SDL_UpdateWindowSurface(m_window);
 }

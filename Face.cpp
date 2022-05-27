@@ -10,36 +10,61 @@ Face::Face() {
     //     return;
     // }
 
-    m_position.x = 70.0;
-    m_position.y = 70.0;
-    m_position.w = 94;
-    m_position.h = 128;
+    // m_position.x = 70.0;
+    // m_position.y = 70.0;
+    // m_position.w = 94;
+    // m_position.h = 128;
 
-    m_x = m_position.x;
-    m_y = m_position.y;
+    // m_x = m_position.x;
+    // m_y = m_position.y;
+
+    vx[0] = 50;
+    vx[1] = 150;
+    vx[2] = 250;
+    
+    vy[0] = 50;
+    vy[1] = 250;
+    vy[2] = 50;
 }
 
 void Face::update(double delta_time) {
     switch(m_direction) {
         case Direction::NONE: {
-            m_x += 0.0;
-            m_y += 0.0;
+            vx[0] += 0;
+            vx[1] += 0;
+            vx[2] += 0;
+    
+            vy[0] += 0;
+            vy[1] += 0;
+            vy[2] += 0;
             break;
         }
         case Direction::UP: {
-            m_y = m_y - (10.0 * delta_time);
+            // m_y = m_y - (10.0 * delta_time); preserve
+            vy[0] -= 10.0 * delta_time;
+            vy[1] -= 10.0 * delta_time;
+            vy[2] -= 10.0 * delta_time;
             break;
         }
         case Direction::DOWN: {
-            m_y = m_y + (10.0 * delta_time);
+            // m_y = m_y + (10.0 * delta_time);
+            vy[0] += 10.0 * delta_time;
+            vy[1] += 10.0 * delta_time;
+            vy[2] += 10.0 * delta_time;
             break;
         }
         case Direction::LEFT: {
-            m_x = m_x - (10.0 * delta_time);
+            // m_x = m_x - (10.0 * delta_time);
+            vx[0] -= 10.0 * delta_time;
+            vx[1] -= 10.0 * delta_time;
+            vx[2] -= 10.0 * delta_time;
             break;
         }
         case Direction::RIGHT: {
-            m_x = m_x + (10.0 * delta_time);
+            // m_x = m_x + (10.0 * delta_time);
+            vx[0] += 10.0 * delta_time;
+            vx[1] += 10.0 * delta_time;
+            vx[2] += 10.0 * delta_time;
             break;
         }
         // case Direction::EXPAND: {
@@ -54,9 +79,10 @@ void Face::update(double delta_time) {
     m_position.y = m_y;
 }
 
-void Face::draw(SDL_Renderer *renderer, const Sint16 *vx, const Sint16 *vy) {
+// void Face::draw(SDL_Renderer *renderer, const Sint16 *vx, const Sint16 *vy) {
+void Face::draw(SDL_Renderer *renderer) {
     // make a struct containing coords
-    if(filledPolygonRGBA(renderer,vx,vy,3,0,100,0,255)!=0) {
+    if(filledPolygonRGBA(renderer,vx,vy,3,0,100,0,255)!=0) { //aaTrigonColor does not work(?)
         std::cout << "error";
         return;
     }

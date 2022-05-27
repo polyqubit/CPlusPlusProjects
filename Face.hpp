@@ -14,18 +14,23 @@ enum class Direction {
     // EXPAND
 };
 
+// Face is a triangle drawn using gfx's 
 class Face {
     public:
         Face();
         ~Face() = default;
     
         void update(double delta_time);
-        void draw(SDL_Renderer *renderer, const Sint16 *vx, const Sint16 *vy);
+        // void draw(SDL_Renderer *renderer, const Sint16 *vx, const Sint16 *vy);
+        void draw(SDL_Renderer *renderer);
         void handle_events(SDL_Event const &event);
     private:
         SDL_Surface *m_image;
         SDL_Rect     m_position;
         Direction    m_direction;
+        
+        Sint16 vx[3];  // = {50,100,50};
+        Sint16 vy[3];  // = {50,100,10};
         double       m_x;
         double       m_y;
 };
