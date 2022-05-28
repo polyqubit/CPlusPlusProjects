@@ -97,8 +97,8 @@ void Face::update(double delta_time) {
 // void Face::draw(SDL_Renderer *renderer, const Sint16 *vx, const Sint16 *vy) {
 void Face::draw(SDL_Renderer *renderer) {
     // make a struct containing coords
-    aapolygonRGBA(renderer,nullptr,nullptr,3,0,100,0,255);
-    if(aapolygonRGBA(renderer,vx,vy,3,0,100,0,255)!=0) { // aaTrigonColor does not work(?)
+    boxRGBA(renderer,vx[0]-10,vy[0]-10,vx[2]+10,vy[1]+10,0,0,0,255);
+    if(filledPolygonRGBA(renderer,vx,vy,3,0,100,0,255)!=0) { // aaTrigonColor does not work(?)
         std::cout << "error";
         return;
     }
