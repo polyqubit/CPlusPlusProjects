@@ -14,7 +14,7 @@ enum class Direction {
     // EXPAND
 };
 
-// Face is a triangle drawn using gfx's 
+// Face is a triangle drawn using gfx
 class Face {
     public:
         Face();
@@ -34,6 +34,7 @@ class Face {
         double dvx[3];
         double dvy[3];
 
-        double       m_x;
-        double       m_y;
+        const double moveconst = 200.0;
+        // double       m_x;
+        // double       m_y;
 };
