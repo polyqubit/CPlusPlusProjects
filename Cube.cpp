@@ -2,13 +2,18 @@
 
 #include <iostream>
 
-Mesh::Mesh() {
-    // initialize vector array
+struct vertex {
+    int x;
+    int y;
+};
+
+Cube::Cube() {
+    vs = new vertex[8];
 }
 
 void Mesh::update(double delta_time) {
     // transformations
-    switch(direction) {
+    switch(motion) {
         case State::NONE: {
             
             break;
@@ -50,16 +55,16 @@ void Mesh::handle_events(SDL_Event const &event) {
             Uint8 const *keys = SDL_GetKeyboardState(nullptr);
 
             if(keys[SDL_SCANCODE_W] == 1) {
-                direction = State::UP;
+                motion = State::UP;
             }
             else if(keys[SDL_SCANCODE_S] == 1) {
-                direction = State::DOWN;
+                motion = State::DOWN;
             }
             else if(keys[SDL_SCANCODE_A] == 1) {
-                direction = State::LEFT;
+                motion = State::LEFT;
             }
             else if(keys[SDL_SCANCODE_D] == 1) {
-                direction = State::RIGHT;
+                motion = State::RIGHT;
             }
             // else if(keys[SDL_SCANCODE_E] == 1) {
             //     m_direction = Direction::EXPAND;
@@ -68,7 +73,7 @@ void Mesh::handle_events(SDL_Event const &event) {
             break;
         }
         case SDL_KEYUP: {
-            direction = State::NONE;
+            motion = State::NONE;
             break;
         }
     }
