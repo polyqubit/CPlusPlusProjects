@@ -2,13 +2,11 @@
 
 #include <iostream>
 
-struct vertex {
-    int x;
-    int y;
-};
-
 Cube::Cube() {
-    vs = new vertex[8];
+    vs.push_back(vertex(10,10));
+    vs.push_back(vertex(10,60));
+    vs.push_back(vertex(60,10));
+    vs.push_back(vertex(60,60));
 }
 
 void Mesh::update(double delta_time) {
@@ -47,6 +45,9 @@ void Mesh::update(double delta_time) {
 // void Face::draw(SDL_Renderer *renderer, const Sint16 *vx, const Sint16 *vy) {
 void Mesh::draw(SDL_Renderer *renderer) {
     // loop through vertex array and construct mesh
+    for(int i=0;i<vs.size();i++) {
+
+    }
 }
 
 void Mesh::handle_events(SDL_Event const &event) {

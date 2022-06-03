@@ -1,10 +1,15 @@
 #pragma once
 
 #include "Face.hpp"
+#include <vector>
 
 struct vertex {
     int x;
     int y;
+    vertex() {x=0;y=0;}
+    vertex(int a, int b) {x=a;y=b;};
+    void modX(int a) {x=a;};
+    void modY(int a) {y=a;};
 };
 
 enum class State {
@@ -23,8 +28,8 @@ class Mesh {
         void draw(SDL_Renderer *renderer);
         void handle_events(SDL_Event const &event);
     protected:
-        State      motion;
-        vertex     *vs;
+        std::vector<vertex> vs;
+        State motion;
 };
 
 // inheritance :o
